@@ -1,0 +1,89 @@
+/* === index.css / App.css === */
+
+/* --- Global Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+:root {
+  /* 🌙 DEFAULT DARK MODE VARIABLES */
+  --bg-dark: #050608;
+  --panel-bg: #15181f;
+  --input-bg: #0a0c10;
+  
+  /* Neon Accents */
+  --neon-blue: #00f3ff;
+  --neon-purple: #bd00ff;
+  --neon-red: #ff2a2a;
+  --neon-green: #00ff66;
+  --neon-orange: #ff9900;
+  
+  /* Text & Shadows */
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --shadow-dark: #050608;
+  --shadow-light: #212630;
+  --border-glow: rgba(0, 243, 255, 0.05);
+}
+
+/* ☀️ LIGHT MODE VARIABLES */
+[data-theme="light"] {
+  --bg-dark: #e0e5ec;         /* Classic light neumorphic base */
+  --panel-bg: #e0e5ec;        /* Match panel to background */
+  --input-bg: #d1d9e6;        /* Slightly darker for inset inputs */
+  
+  /* Neons adjusted for visibility on light bg */
+  --neon-blue: #0077ff; 
+  --neon-purple: #8a2be2;
+  
+  /* Text & Shadows (Crucial for Light 3D effect) */
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --shadow-dark: #a3b1c6;     /* Grey shadow for bottom-right */
+  --shadow-light: #ffffff;    /* Pure white shadow for top-left */
+  --border-glow: rgba(255, 255, 255, 0.5);
+}
+
+/* Base Body Styles */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+/* Fix Calendar Icon for Light Mode */
+[data-theme="light"] ::-webkit-calendar-picker-indicator {
+  filter: none; /* Keeps it black instead of inverting to white */
+}
+/* =========================================
+   OVERRIDE BLOCK - FIXES BACKGROUND & TEXT 
+   ========================================= */
+
+/* 1. Forces the ENTIRE React app to change background, not just the body */
+html, body, #root {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-main) !important;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* 2. Forces inputs, textareas, and selects to use the correct text color */
+input, textarea, select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-main) !important; /* Turns text dark in light mode */
+}
+
+/* 3. Forces the placeholder text to be visible */
+input::placeholder, 
+textarea::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.8 !important;
+}

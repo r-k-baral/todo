@@ -1,0 +1,174 @@
+/* === SLEEK CYBER-PANEL THEME (NAVBAR) === */
+
+/* --- Floating Navbar Container --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 1.5rem auto 2rem auto;
+  padding: 1rem 2rem;
+  background: var(--panel-bg, #15181f);
+  border-radius: 20px;
+  font-family: 'Inter', system-ui, sans-serif;
+  
+  /* Deep floating glass effect */
+  box-shadow: 
+    0 15px 35px var(--shadow-dark, #050608), 
+    inset 0 0 0 1px var(--border-glow, rgba(0, 243, 255, 0.05));
+  position: relative;
+  z-index: 100;
+}
+
+/* Glowing Bottom Border */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue, #00f3ff), var(--neon-purple, #bd00ff), transparent);
+  box-shadow: 0 0 15px var(--neon-blue, #00f3ff);
+  opacity: 0.8;
+}
+
+/* --- Logo Styling --- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-main, #ffffff);
+  cursor: default;
+}
+
+.logo-icon {
+  color: var(--neon-purple, #bd00ff);
+  text-shadow: 0 0 15px var(--neon-purple, #bd00ff);
+  font-size: 1.8rem;
+  animation: pulse 3s infinite;
+}
+
+/* --- Navigation Links List --- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+/* --- 3D Nav Buttons (Links) --- */
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-main, #e2e8f0);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  background-color: var(--input-bg, #0a0c10);
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Inset resting state */
+  box-shadow: 
+    inset 3px 3px 6px var(--shadow-dark, #050608), 
+    inset -3px -3px 6px var(--shadow-light, #212630);
+}
+
+/* Hover State - Pops Out and Glows */
+.nav-links a:hover {
+  background-color: var(--panel-bg, #15181f);
+  color: var(--neon-blue, #00f3ff);
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+  transform: translateY(-2px);
+  border-color: var(--border-glow, rgba(0, 243, 255, 0.3));
+  
+  /* Extruded Button Look */
+  box-shadow: 
+    5px 5px 15px var(--shadow-dark, #050608), 
+    -3px -3px 10px var(--shadow-light, #212630);
+}
+
+/* Active/Click State */
+.nav-links a:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 4px 4px 8px var(--shadow-dark), 
+    inset -4px -4px 8px var(--shadow-light);
+  color: var(--neon-purple, #bd00ff);
+}
+
+/* --- Digital Time Wrapper --- */
+.time-wrapper {
+  background-color: var(--input-bg, #050608); 
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-glow, rgba(0, 243, 255, 0.1));
+  
+  /* Deep inset screen shadow */
+  box-shadow: inset 4px 4px 8px var(--shadow-dark, #000);
+  
+  color: var(--text-main, #ffffff);
+  font-family: 'Courier New', Courier, monospace; /* Digital clock font feel */
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Minimal Pulse Animation for Logo */
+@keyframes pulse {
+  0%, 100% { opacity: 1; text-shadow: 0 0 15px var(--neon-purple, #bd00ff); }
+  50% { opacity: 0.6; text-shadow: 0 0 5px var(--neon-purple, #bd00ff); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 0 0 20px 20px; 
+    margin: 0 auto 2rem auto;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+/* Glowing Bottom Accent Line - Now Animated! */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  /* Creates a focused beam of blue light */
+  background: linear-gradient(90deg, transparent 0%, var(--neon-blue, #00f3ff) 50%, transparent 100%);
+  background-size: 200% 100%;
+  box-shadow: 0 0 15px var(--neon-blue, #00f3ff);
+  opacity: 0.9;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  /* Triggers the movement */
+  animation: scanLight 3s linear infinite;
+}
+
+/* Add this to the very bottom of navbar.css */
+@keyframes scanLight {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

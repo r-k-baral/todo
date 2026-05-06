@@ -1,0 +1,188 @@
+/* === FUTURISTIC 3D THEME (COMPACT) === */
+/* Relies on global variables from App.css, but includes dark fallbacks just in case! */
+
+/* --- Main Container --- */
+.cont {
+  max-width: 380px;
+  margin: 2rem auto;
+  padding: 1.8rem;
+  background: var(--panel-bg, #15181f);
+  border-radius: 20px;
+  color: var(--text-main, #e2e8f0);
+  font-family: 'Inter', system-ui, sans-serif;
+  
+  /* 3D Neumorphic Floating Card Effect */
+  box-shadow: 
+    15px 15px 25px var(--shadow-dark, #050608), 
+    -10px -10px 20px var(--shadow-light, #212630),
+    inset 0 0 0 1px var(--border-glow, rgba(0, 243, 255, 0.05));
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* Glowing Top Accent Line */
+.cont::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--neon-blue, #00f3ff), var(--neon-purple, #bd00ff));
+  box-shadow: 0 0 15px var(--neon-blue, #00f3ff);
+}
+
+/* --- Heading --- */
+.cont h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  
+  /* Neon Gradient Text */
+  color: transparent;
+  background: linear-gradient(90deg, var(--text-main, #ffffff), var(--neon-blue, #00f3ff));
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+/* --- Form Layout --- */
+.from-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* --- Labels --- */
+.from-top label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--neon-blue, #00f3ff);
+  margin-bottom: -0.4rem;
+  margin-left: 5px;
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.2);
+}
+
+/* =========================================
+   INPUT STYLES (WITH VISIBILITY FIXES)
+   ========================================= */
+
+.from-top input,
+.from-top textarea,
+.from-top select {
+  /* Saftey nets applied to force the correct colors */
+  background-color: var(--input-bg, #0a0c10) !important;
+  color: var(--text-main, #ffffff) !important;
+  
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.3s ease;
+  
+  /* 3D Inset Shadow */
+  box-shadow: 
+    inset 4px 4px 10px var(--shadow-dark, #050608), 
+    inset -4px -4px 10px var(--shadow-light, #212630);
+}
+
+.from-top textarea {
+  resize: vertical;
+}
+
+/* Placeholder Text */
+.from-top input::placeholder,
+.from-top textarea::placeholder {
+  color: var(--text-muted, #94a3b8) !important;
+  opacity: 0.6 !important;
+}
+
+/* WebKit Autofill Override (Stops Chrome from turning inputs white) */
+.from-top input:-webkit-autofill,
+.from-top input:-webkit-autofill:hover, 
+.from-top input:-webkit-autofill:focus, 
+.from-top textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--input-bg, #0a0c10) inset !important;
+  -webkit-text-fill-color: var(--text-main, #ffffff) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* 3D Glow on Focus */
+.from-top input:focus,
+.from-top textarea:focus,
+.from-top select:focus {
+  box-shadow: 
+    inset 4px 4px 10px var(--shadow-dark, #050608), 
+    inset -4px -4px 10px var(--shadow-light, #212630),
+    0 0 15px rgba(0, 243, 255, 0.15);
+  transform: translateY(-2px);
+  border-bottom: 2px solid var(--neon-blue, #00f3ff);
+}
+
+/* Fix calendar icon color */
+[data-theme="dark"] ::-webkit-calendar-picker-indicator,
+::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(180deg) brightness(1.5);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+[data-theme="light"] ::-webkit-calendar-picker-indicator {
+  filter: none;
+}
+
+/* --- Priority Dropdown Dynamic Styles --- */
+.priority-select {
+  appearance: none;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.priority-select.low { border-bottom-color: #10b981; }
+.priority-select.medium { border-bottom-color: #f59e0b; }
+.priority-select.high { border-bottom-color: #ef4444; }
+
+/* --- 3D Submit Button --- */
+.submmit {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, var(--neon-blue, #00f3ff), var(--neon-purple, #bd00ff));
+  color: #ffffff !important; /* Always white so it pops on the gradient */
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 3D Pop-out effect */
+  box-shadow: 
+    0 8px 15px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(0, 243, 255, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Button Hover */
+.submmit:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 15px 25px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(189, 0, 255, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Button Active */
+.submmit:active {
+  transform: translateY(2px);
+  box-shadow: 
+    0 5px 10px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(0, 243, 255, 0.4),
+    inset 0 5px 10px rgba(0, 0, 0, 0.3);
+}

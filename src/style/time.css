@@ -1,0 +1,47 @@
+/* === COOL TRANSPARENT DIGITAL TIME === */
+
+/* The container stays completely transparent so the Navbar box shows through */
+.time {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The actual time text styling */
+.time-text {
+  /* Digital clock font feel */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  
+  /* Cyberpunk blue color */
+  color: var(--neon-blue, #00f3ff);
+  
+  /* Multilayered neon text glow */
+  text-shadow: 
+    0 0 5px rgba(0, 243, 255, 0.5),
+    0 0 10px rgba(0, 243, 255, 0.3),
+    0 0 20px rgba(0, 243, 255, 0.1);
+    
+  /* Subtle breathing animation for the glow */
+  animation: timePulse 2s ease-in-out infinite alternate;
+}
+
+/* Makes the clock subtly dim and brighten like a real neon display */
+@keyframes timePulse {
+  0% {
+    opacity: 0.8;
+    text-shadow: 
+      0 0 2px rgba(0, 243, 255, 0.4),
+      0 0 5px rgba(0, 243, 255, 0.2);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 
+      0 0 8px rgba(0, 243, 255, 0.8),
+      0 0 15px rgba(0, 243, 255, 0.5),
+      0 0 25px rgba(0, 243, 255, 0.3);
+  }
+}
