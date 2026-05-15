@@ -13,6 +13,7 @@ const Navbar = () => {
             <ul className='nav-links'>
                 <li><Link to="/">List</Link></li>
                 <li><Link to="/add">Add  task</Link></li>
+                <li><Link to="/signup">SignUp</Link></li>
                 <li>
         
         </li>
