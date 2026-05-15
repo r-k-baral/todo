@@ -22,13 +22,13 @@ const SignUp = () => {
         headers: { 'Content-Type': 'application/json' }
       });
       
-      let result = await response.json();
+      let results = await response.json();
       
-      if (result.success) {
+      if (results.success) {
         alert("Account created successfully! Please log in.");
         navigate('/login'); // 🚀 Send them to the login page after success!
       } else {
-        alert(result.message); // Show error (e.g., "Email already in use")
+        alert(result. message); // Show error (e.g., "Email already in use")
       }
     } catch (error) {
       console.log("Signup Error:", error);

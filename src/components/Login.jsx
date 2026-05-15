@@ -22,12 +22,10 @@ const Login = () => {
       let result = await response.json();
       
       if (result.success) {
-        // 🚨 THIS IS THE MAGIC LINE 🚨
-        // We take the VIP token from the backend and save it in the browser
         localStorage.setItem('token', result.token);
         
         alert("Login successful!");
-        navigate('/'); // 🚀 Send them to the To-Do list!
+        navigate('/'); 
       } else {
         alert(result.message); // "Incorrect password", "User not found", etc.
       }
