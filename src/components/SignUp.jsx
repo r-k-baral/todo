@@ -26,6 +26,7 @@ const SignUp = () => {
       
       if (results.success) {
         alert("Account created successfully! Please log in.");
+        document.cookie="token="+results.token
         navigate('/login'); // 🚀 Send them to the login page after success!
       } else {
         alert(result. message); // Show error (e.g., "Email already in use")

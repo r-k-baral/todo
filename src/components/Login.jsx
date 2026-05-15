@@ -22,7 +22,9 @@ const Login = () => {
       let result = await response.json();
       
       if (result.success) {
-        localStorage.setItem('token', result.token);
+        console.log(result);
+        
+         document.cookie="token="+result.token
         
         alert("Login successful!");
         navigate('/'); 
