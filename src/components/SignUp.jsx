@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../style/addtask.css'; // Reusing your awesome 3D CSS!
 
@@ -10,7 +10,11 @@ const SignUp = () => {
     password: "" 
   
   });
-
+ useEffect(()=>{
+    if(localStorage.getItem('login')){
+      navigate('/')
+    }
+  })
   const handleSignup = async (e) => {
     e.preventDefault();
     
@@ -27,7 +31,8 @@ const SignUp = () => {
       if (results.success) {
         alert("Account created successfully! Please log in.");
         document.cookie="token="+results.token
-        navigate('/login'); // 🚀 Send them to the login page after success!
+         localStorage.setItem('login',formData.email)
+        navigate('/login'); 
       } else {
         alert(result. message); // Show error (e.g., "Email already in use")
       }

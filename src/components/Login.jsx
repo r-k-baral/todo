@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../style/addtask.css'; // Reusing the 3D CSS!
 
@@ -8,6 +8,12 @@ const Login = () => {
     email: "", 
     password: "" 
   });
+
+  useEffect(()=>{
+    if(localStorage.getItem('login')){
+      navigate('/')
+    }
+  })
 
   const handleLogin = async (e) => {
     e.preventDefault();
