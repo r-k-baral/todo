@@ -23,8 +23,11 @@ const Login = () => {
       
       if (result.success) {
         console.log(result);
+        console.log(formData.email);
         
-         document.cookie="token="+result.token
+         document.cookie="token="+result.token;
+         localStorage.setItem('login',formData.email)
+         
         
         alert("Login successful!");
         navigate('/'); 

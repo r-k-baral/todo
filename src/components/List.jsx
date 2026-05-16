@@ -12,7 +12,9 @@ const [filterStatus, setFilterStatus] = useState("");
     },[])
 
    async function   getlistData(){
-        let list = await fetch('http://localhost:3500/tasks'); 
+        let list = await fetch('http://localhost:3500/tasks',{
+          credentials:'include'
+        }); 
        list = await list.json();
       console.log(list);
       
