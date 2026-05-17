@@ -3,17 +3,18 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../style/addtask.css'; // Reusing the 3D CSS!
 
 const Login = () => {
-  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({ 
     email: "", 
     password: "" 
   });
+  const navigate = useNavigate();
 
   useEffect(()=>{
     if(localStorage.getItem('login')){
       navigate('/')
     }
-  })
+  },[navigate])
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,19 +26,20 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' }
       });
       
+       if (!response.ok) {
+  throw new Error(`HTTP error! status: ${response.status}`);
+}
+
       let result = await response.json();
       
       if (result.success) {
-        console.log(result);
-        console.log(formData.email);
         
-         document.cookie="token="+result.token;
-         localStorage.setItem('login',formData.email)
-         
-        
-        alert("Login successful!");
-        navigate('/'); 
-      } else {
+       document.cookie="token="+result.token;
+       localStorage.setItem('login',formData.email)
+       alert("Login successful!");
+       navigate('/'); 
+      } 
+      else {
         alert(result.message); // "Incorrect password", "User not found", etc.
       }
     } catch (error) {

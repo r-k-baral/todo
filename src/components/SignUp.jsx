@@ -3,18 +3,19 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../style/addtask.css'; // Reusing your awesome 3D CSS!
 
 const SignUp = () => {
-  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({ 
     name:"",
     email: "", 
     password: "" 
   
   });
+  const navigate = useNavigate();
  useEffect(()=>{
     if(localStorage.getItem('login')){
-      navigate('/')
+      navigate('/Login')
     }
-  })
+  },[navigate])
   const handleSignup = async (e) => {
     e.preventDefault();
     
@@ -27,6 +28,8 @@ const SignUp = () => {
       });
       
       let results = await response.json();
+
+     
       
       if (results.success) {
         alert("Account created successfully! Please log in.");
