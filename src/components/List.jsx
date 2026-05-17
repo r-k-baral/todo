@@ -118,7 +118,7 @@ const filteredTasks = sortedTasks.filter((item) => {
 
 // deleting the task 
 const deletetask =  async(id)=>{
- let itemToDel = await fetch('http://localhost:3500/delete/'+id,{method:'delete'}); 
+ let itemToDel = await fetch('http://localhost:3500/delete/'+id,{method:'delete',credentials:'include',}); 
        itemToDel = await itemToDel.json();
       console.log("itemToDel");
       

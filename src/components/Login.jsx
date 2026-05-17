@@ -36,8 +36,10 @@ const Login = () => {
         
        document.cookie="token="+result.token;
        localStorage.setItem('login',formData.email)
-       alert("Login successful!");
-       navigate('/'); 
+       window.dispatchEvent(new Event('localStorage-littleSLOW'))
+      
+        navigate('/'); 
+       
       } 
       else {
         alert(result.message); // "Incorrect password", "User not found", etc.

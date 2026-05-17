@@ -16,17 +16,27 @@ const AddTask = () => {
   };
 
     console.log(taskData);
-    let results = await fetch('http://localhost:3500/add-task',{
+    console.log(dataWithTime);
+    let result = await fetch('http://localhost:3500/add-task',{
       method:'Post',
       body:JSON.stringify(dataWithTime),
+      credentials:'include',
       headers:{
         'Content-Type':'application/json'
       }
     })
-    results = await results.json()
-    if (results) {
+
+    
+    result = await result.json()
+    console.log(result)
+    if (result.success) {
+      console.log("hello"+result.success);
+      
       console.log("task added"); 
       settaskData({})
+    }
+    else{
+      alert("some issue with backend")
     }
   }
   return (
