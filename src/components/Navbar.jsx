@@ -5,6 +5,7 @@ import Time from './Time'
 
 const Navbar = () => {
   const [login, setlogin] = useState(localStorage.getItem('login'))
+  const [userName, setUserName] = useState(localStorage.getItem('userName'));
 
 // 2. Re-check localStorage every time the URL changes
  useEffect(()=>{
@@ -21,6 +22,7 @@ return () => {
     // You might also want to clear your token cookie here
   const handleLogout = () => {
     localStorage.removeItem('login'); 
+    localStorage.removeItem('userName');
     setlogin(null);
   };
   
@@ -34,6 +36,9 @@ return () => {
                 {
               login ?
               <>
+              <li className="user-greeting" style={{ color: '#00d2ff', fontWeight: 'bold', marginRight: '15px' }}>
+                Hi, {localStorage.getItem('userName')}
+            </li>
                 <li><Link to="/">List</Link></li>
                 <li><Link to="/add">Add  task</Link></li>
                 <li><Link to="/login" onClick={handleLogout}>logout</Link></li>

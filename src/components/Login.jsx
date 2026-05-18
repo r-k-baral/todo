@@ -36,6 +36,7 @@ const Login = () => {
         
        document.cookie="token="+result.token;
        localStorage.setItem('login',formData.email)
+       localStorage.setItem('userName', result.name);
        window.dispatchEvent(new Event('localStorage-littleSLOW'))
       
         navigate('/'); 

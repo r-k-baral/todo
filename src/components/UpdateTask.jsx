@@ -18,7 +18,10 @@ const UpdateTask = () => {
   useEffect(() => {
     const getTaskDetails = async () => {
       try {
-        let response = await fetch(`http://localhost:3500/task/${id}`);
+       // let response = await fetch(`http://localhost:3500/task/${id} credentials:'include'`);
+       let response = await fetch(`http://localhost:3500/task/${id}`, { 
+        credentials: 'include' 
+});
         let data = await response.json();
         
         if (data.success) {

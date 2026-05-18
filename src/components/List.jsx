@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import "../style/list.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const List = () => {
   const [search, setSearch] = useState("");
 const [filterPriority, setFilterPriority] = useState("");
 const [filterStatus, setFilterStatus] = useState("");
     const [taskData, settaskData] = useState([]);
+    const navigate = useNavigate()
     useEffect(()=>{
         getlistData()
     },[])
 
    async function   getlistData(){
-        let list = await fetch('http://localhost:3500/tasks',{
+        let response = await fetch('http://localhost:3500/tasks',{
           credentials:'include'
         }); 
-       list = await list.json();
+
+        if (response.status === 401) {
+        localStorage.removeItem('login');
+        localStorage.removeItem('userName');
+        navigate('/login');
+        return;
+      }
+
+      const list = await response.json();
       console.log(list);
       
        if(list.success){
@@ -55,6 +64,7 @@ const toggleComplete = async (id) => {
   try {
     await fetch(`http://localhost:3500/task/${id}`, {
       method: "PUT",
+      credentials: 'include',
       headers: {
         "Content-Type": "application/json"
       }
