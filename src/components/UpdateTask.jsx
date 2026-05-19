@@ -22,11 +22,21 @@ const UpdateTask = () => {
        let response = await fetch(`http://localhost:3500/task/${id}`, { 
         credentials: 'include' 
 });
+     // Agar token expire ho gaya ho, toh login page par bhejo
+       if (response.status === 401) {
+          localStorage.removeItem('login');
+          localStorage.removeItem('userName');
+          navigate('/login');
+          return;
+        }
         let data = await response.json();
+        console.log("Backend se aaya purana data:", data);
         
-        if (data.success) {
+        if (data.success && data.result) {
           // Pre-fill the form with the database data
           settaskData(data.result); 
+        }else {
+          alert("Task nahi mila ya aap authorized nahi hain!");
         }
       } catch (error) {
         console.log("Error fetching task details:", error);
@@ -40,12 +50,13 @@ const UpdateTask = () => {
 
   // 2. Handle the Form Submission to Update
   const handleUpdate = async (e) => {
-    e.preventDefault(); // 🚫 stop page reload
+    e.preventDefault(); //  stop page reload
     
     try {
       let response = await fetch(`http://localhost:3500/tasks/${id}`, {
         method: 'PUT',
         body: JSON.stringify(taskData),
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         }

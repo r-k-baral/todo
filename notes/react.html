@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>37-in-1 Frontend Master Interview Guide</title>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 950px; margin: 0 auto; }
+        h1 { text-align: center; color: #38bdf8; margin-bottom: 10px; font-size: 2.5rem;}
+        p.subtitle { text-align: center; color: #94a3b8; margin-bottom: 40px; }
+        
+        details { background: #1e293b; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border-left: 5px solid #38bdf8; overflow: hidden; }
+        summary { font-size: 1.2rem; font-weight: 600; color: #e2e8f0; padding: 20px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::-webkit-details-marker { display: none; }
+        summary:hover { background: #334155; }
+        
+        .content { padding: 0 20px 20px 20px; border-top: 1px solid #334155; margin-top: 10px; padding-top: 20px; }
+        
+        .hinglish { background: #422006; padding: 15px; border-radius: 6px; margin-bottom: 15px; border-left: 4px solid #f59e0b; color: #fef3c7; }
+        .english { background: #0c4a6e; padding: 15px; border-radius: 6px; margin-bottom: 15px; border-left: 4px solid #0ea5e9; color: #e0f2fe; }
+        
+        .diagram-container { background: #f8fafc; padding: 15px; border-radius: 6px; margin-top: 15px; overflow-x: auto; color: #333; text-align: center; }
+        .badge { display: inline-block; padding: 4px 10px; background-color: #38bdf8; color: #0f172a; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🚀 Complete Frontend Interview Guide</h1>
+        <p class="subtitle">Click on any question to reveal the Hinglish logic, English answer, and architectural diagrams.</p>
+
+        <details><summary><span class="badge">JS Core</span> 1. Event Loop & Sync vs Async JS</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho (Hinglish):</strong><br>JS ek baar me ek kaam karti hai (Sync). Agar time lene wala kaam aaye (Async API), toh use browser ko de deti hai. Browser kaam karke result 'Queue' me daalta hai. Event Loop ka kaam hai dekhna ki 'Call Stack' khali hai ya nahi. Khali hote hi wo Queue se task utha kar execute karwa deta hai.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"JS is synchronous and single-threaded. For asynchronous tasks, it uses the browser's Web APIs. Once an async task finishes, its callback enters the Task Queue. The Event Loop continuously checks the Call Stack; when empty, it pushes the first task from the Queue into the Stack for execution."</div>
+                <div class="diagram-container"><div class="mermaid">graph LR; A[Call Stack] -->|Async| B(Web APIs); B --> C[Task Queue]; C -->|Event Loop| A;</div></div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Network</span> 2. What happens when you type a URL?</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br>1. DNS search karta hai IP ke liye. 2. TCP connection banata hai. 3. Browser HTTP request bhejta hai. 4. Server HTML bhejta hai. 5. Browser HTML aur CSS ko padh kar DOM aur CSSOM banata hai, dono milakar Render Tree banta hai aur screen par paint hota hai.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"First, DNS resolution finds the IP. Then, a TCP handshake establishes a connection. The browser sends an HTTP request, and the server returns HTML. The browser parses HTML to build the DOM, parses CSS to build the CSSOM, combines them into a Render Tree, calculates layout (reflow), and paints the pixels."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">JS Core</span> 3. Hoisting & Closures</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Hoisting:</strong> JS variables aur functions ko run hone se pehle top pe le jata hai. `var` undefined hota hai, `let/const` TDZ me rehte hain.<br><strong>Closure:</strong> Ek function ke andar dusra function. Andar wale function ko bahar wale ke variables humesha yaad rehte hain, chahe bahar wala khatam ho jaye. Data private rakhne ke liye best hai.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"<strong>Hoisting</strong> moves declarations to the top of the scope before execution. `var` is initialized as undefined, while `let` and `const` enter the Temporal Dead Zone.<br><strong>Closures</strong> occur when an inner function remembers the variables of its outer lexical scope even after the outer function has returned. They are used for data privacy and currying."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">JS Core</span> 4. Prototypal Inheritance & Deep vs Shallow Copy</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Inheritance:</strong> JS me objects ek dusre se properties share karte hain via `__proto__`. Agar object me property na mile, toh wo apne parent (prototype) me dhundta hai.<br><strong>Shallow Copy:</strong> Sirf upar ka data copy hota hai, andar ke nested objects original se jude rehte hain (`...spread`).<br><strong>Deep Copy:</strong> Pura naya object banta hai, koi connection nahi rehta (`structuredClone()` ya `JSON.parse(JSON.stringify)`).</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"<strong>Prototypal Inheritance</strong> is how objects inherit properties from other objects via the prototype chain.<br>A <strong>Shallow Copy</strong> copies top-level properties, but nested objects share references. A <strong>Deep Copy</strong> creates a completely independent clone, often achieved via `structuredClone()`."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">React</span> 5. React Fiber, Reconciliation & Batching</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Fiber:</strong> React 16+ ka engine jo rendering ko pause ya abort kar sakta hai taaki UI freeze na ho.<br><strong>Reconciliation:</strong> React purane Virtual DOM aur naye Virtual DOM ko compare (Diffing) karta hai aur sirf change hue parts ko real DOM me update karta hai.<br><strong>Batching:</strong> Multiple `setState` calls ko React ek sath group karke ek hi baar render karta hai taaki performance bache.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"<strong>Fiber</strong> is React's rendering engine that allows incremental, interruptible rendering to prevent UI jank. <strong>Reconciliation</strong> is the diffing algorithm comparing the old and new Virtual DOM to selectively update the real DOM. <strong>Batching</strong> groups multiple state updates into a single re-render cycle for better performance."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">React Perf</span> 6. Avoiding Re-renders & Stale Closures</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br>Re-renders rokne ke liye `React.memo` (component ke liye), `useCallback` (functions ke liye), aur `useMemo` (heavy math ke liye) use karo. State ko niche rakho.<br><strong>Stale Closure:</strong> Agar `useEffect` me state use ki par usko dependency `[]` me nahi daala, toh hook purani value yaad rakhega. Humesha linter warnings ko follow karo!</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"To avoid re-renders, I colocate state, wrap child components in `React.memo`, and use `useCallback` and `useMemo` to maintain referential equality. <br>A <strong>Stale Closure</strong> happens when a hook captures an outdated state variable because it was omitted from the dependency array."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">React Perf</span> 7. Memory Leaks & Cleanup (Canceling API)</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br>Agar component page se hat gaya par uska `setInterval` chalu hai, ya API call pending hai, toh memory leak hota hai. Ise bachane ke liye `useEffect` me return (cleanup) function likho. API rokne ke liye `AbortController` ka use karo.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"Memory leaks happen when unmounted components retain active listeners or timers. I prevent this by returning a cleanup function in `useEffect` to clear timeouts and remove event listeners. For ongoing API calls, I use the `AbortController` API to cancel requests if the user navigates away."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">React Core</span> 8. Controlled vs Uncontrolled Components</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Controlled:</strong> Input ki value React ki state (`useState`) se control hoti hai.<br><strong>Uncontrolled:</strong> Input ki value seedha DOM (HTML) me rehti hai, aur hum `useRef` se jarurat padne pe usko nikalte hain.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"In <strong>Controlled components</strong>, form data is handled by React state, making real-time validation easy. <strong>Uncontrolled components</strong> keep the data in the DOM itself, accessed via a `ref` only when needed, like on form submit."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Architecture</span> 9. SSR, CSR, SSG, ISR & Hydration</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>CSR:</strong> Browser me render (slow start). <strong>SSR:</strong> Server pe render per request (Good SEO). <strong>SSG:</strong> Build time pe static HTML (Super fast). <strong>ISR:</strong> SSG ki tarah par background me update hota hai.<br><strong>Hydration:</strong> Server se aayi static HTML par JS lagana taaki button click wagarah kaam karein. Hydration Mismatch tab hota hai jab server aur browser ka data alag ho.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"<strong>CSR</strong> shifts rendering to the client. <strong>SSR</strong> generates HTML on the server per request. <strong>SSG</strong> builds HTML at compile time. <strong>ISR</strong> statically generates pages but revalidates them in the background. <strong>Hydration</strong> is the process of attaching event listeners to server-rendered HTML. A mismatch occurs if the initial UI rendered by the server differs from what the client expects."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Optimization</span> 10. Code Splitting, Lazy Loading & Bundle Size</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br>Saari JS ek sath load karoge toh app slow hogi. <strong>Code Splitting</strong> app ko chote hisso me tod deta hai. <strong>Lazy Loading</strong> (`React.lazy`) se component tabhi download hota hai jab user us page pe jata hai. <strong>Tree Shaking</strong> wo process hai jisme unused code bundle se delete kar diya jata hai. In sabse bundle size chota hota hai.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"To optimize bundle size, I use <strong>Code Splitting</strong> and <strong>Lazy Loading</strong> via `React.lazy` and Suspense to load routes asynchronously. I also rely on bundlers (like Webpack/Vite) for <strong>Tree Shaking</strong>, which removes dead/unused code from the final bundle."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Optimization</span> 11. Debounce vs Throttle & UI Jank</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Debounce:</strong> Type karna rukne ke thodi der baad API call karna (Search bar).<br><strong>Throttle:</strong> Lagatar scroll karne pe har 1 second me API call karna (Scroll events).<br>Inke bina lagatar API hit hoti hai jisse browser hang hota hai, is lag ko hi <strong>UI Jank</strong> kehte hain.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"<strong>Debouncing</strong> delays function execution until a pause occurs in the trigger event (great for search inputs). <strong>Throttling</strong> limits execution to once every X milliseconds (great for scroll events). Failing to use these causes main-thread blocking, leading to <strong>UI Jank</strong> (frame rate drops)."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Optimization</span> 12. Repaint vs Reflow vs Compositing</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Reflow:</strong> Width/Height change karna (Sabse bhari, browser ko sab dobara napna padta hai).<br><strong>Repaint:</strong> Color change karna (Halka).<br><strong>Compositing:</strong> CSS Transform/Opacity change karna (Sabse fast, GPU use hota hai, animations ke liye best).</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"<strong>Reflow</strong> calculates layout changes (dimensions, positions) and is very expensive. <strong>Repaint</strong> updates visual elements like colors without affecting layout. <strong>Compositing</strong> leverages the GPU to merge visual layers (using `transform` and `opacity`), making it the most performant way to animate."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Optimization</span> 13. Infinite Scrolling & Virtualization</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br>Agar list me 10,000 items hain, toh sabko DOM me daalne se browser crash ho jayega. Hum 'Intersection Observer' use karte hain API se aur data mangwane ke liye. Aur render karne ke liye 'Windowing' ya 'Virtualization' use karte hain, yani sirf wahi 20 item render karo jo screen pe dikh rahe hain.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"I implement infinite scrolling using the <strong>Intersection Observer API</strong> to fetch the next page of data when the user reaches the bottom. For rendering large lists efficiently, I use <strong>Virtualization</strong> (like `react-window`), rendering only the items currently visible in the viewport to keep the DOM light."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Security</span> 14. JWT, Tokens Storage & Refresh Flow</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Storage:</strong> Access token ko memory me ya `httpOnly` secure cookies me rakhna chahiye. LocalStorage me rakhne se XSS attack ka khatra hota hai.<br><strong>Refresh:</strong> Access token expire hone pe (401 error), Axios interceptor rok leta hai, background me refresh token bhej ke naya access token lata hai aur request dobara bhejta hai.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"Tokens should ideally be stored in `httpOnly` secure cookies to prevent XSS attacks. For the refresh flow, I set up an Axios interceptor. If an API returns 401 Unauthorized, the interceptor catches it, pauses the request queue, hits the refresh endpoint with the refresh token, updates the access token, and retries the failed requests."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Security</span> 15. Authentication vs Authorization & CORS</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Authentication:</strong> Tu kaun hai? (Login verify karna). <strong>Authorization:</strong> Tu kya kar sakta hai? (Admin hai ya normal user?).<br><strong>CORS:</strong> Browser ek website se dusri website ke server pe data bhejne se rokta hai. Server headers me permission deta hai, tabhi browser us cross-origin request ko pass hone deta hai.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"<strong>Authentication</strong> verifies a user's identity, while <strong>Authorization</strong> dictates their permissions (RBAC). <strong>CORS</strong> (Cross-Origin Resource Sharing) is a mechanism where the server uses HTTP headers to bypass the browser's Same-Origin Policy, allowing a frontend on one domain to request data from another."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Architecture</span> 16. State Management, Service Workers & Caching</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>State:</strong> Chote apps ke liye Context API, bade apps ke liye Redux Toolkit ya Zustand.<br><strong>Service Workers:</strong> Ye browser aur network ke beech middleman hote hain. Ye files aur API ko cache (save) kar lete hain taaki offline hone pe bhi app chale (PWA). Caching strategies hoti hain jaise 'Cache First' ya 'Network First'.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"For state management, I use Context API for localized UI state and Redux Toolkit or Zustand for complex, global server state. <strong>Service Workers</strong> act as network proxies, allowing us to cache static assets and API responses to enable offline functionality and faster subsequent loads using strategies like Stale-While-Revalidate."</div>
+            </div>
+        </details>
+
+        <details><summary><span class="badge">Architecture</span> 17. Race Conditions, API Retries & Bottlenecks</summary>
+            <div class="content">
+                <div class="hinglish"><strong>🧠 Samjho:</strong><br><strong>Race Condition:</strong> Agar tumne 'Apple' search kiya fir 'Banana'. 'Apple' ka data late aaya aur screen pe Banana ki jagah dikhne laga. Ise rokne ke liye pichli API ko cancel (AbortController) karna chahiye.<br><strong>Debugging:</strong> Chrome DevTools ka Network tab dekho, React Profiler se check karo kon faltu re-render ho raha hai, aur Lighthouse se score check karo.</div>
+                <div class="english"><strong>🗣️ Speak in Interview:</strong><br>"A <strong>Race Condition</strong> occurs when multiple asynchronous requests resolve out of order. I prevent this by ignoring stale responses using boolean flags or aborting previous requests. For handling failures gracefully, I implement exponential backoff for API retries. To debug bottlenecks, I utilize the React Profiler to eliminate wasted renders and Chrome DevTools to analyze network payloads."</div>
+            </div>
+        </details>
+    </div>
+
+</body>
+</html>

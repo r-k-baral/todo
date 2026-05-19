@@ -13,7 +13,7 @@ const SignUp = () => {
   const navigate = useNavigate();
  useEffect(()=>{
     if(localStorage.getItem('login')){
-      navigate('/Login')
+      navigate('/')
     }
   },[navigate])
   const handleSignup = async (e) => {
@@ -35,7 +35,9 @@ const SignUp = () => {
         alert("Account created successfully! Please log in.");
         document.cookie="token="+results.token
          localStorage.setItem('login',formData.email)
-        navigate('/login'); 
+         localStorage.setItem('userName', formData.name);
+         window.dispatchEvent(new Event('localStorage-littleSLOW'));
+        navigate('/'); 
       } else {
         alert(result. message); // Show error (e.g., "Email already in use")
       }
